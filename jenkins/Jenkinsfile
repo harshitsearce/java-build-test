@@ -29,7 +29,6 @@ pipeline {
             steps {
                 container ('docker-daemon') {
                 sh 'mvn -B -DskipTests clean package'
-                sh 'mv clean deploy'
                 }
             }
         }
@@ -52,6 +51,7 @@ pipeline {
             steps {
                 container ('docker-daemon') {
                 sh './jenkins/scripts/deliver.sh'
+                sh 'mvn clean deploy'
                 }
             }
         }
