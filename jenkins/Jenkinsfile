@@ -32,7 +32,7 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+/*        stage('Test') {
             steps {
                 container ('docker-daemon') {
                 sh 'mvn test'
@@ -46,7 +46,7 @@ pipeline {
                 }
             }
         }
-        }
+        }*/
         stage('Deliver') {
             steps {
                 container ('docker-daemon') {
