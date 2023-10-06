@@ -27,22 +27,30 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                container ('docker-daemon') {
                 sh 'mvn -B -DskipTests clean package'
+                }
             }
         }
         stage('Test') {
             steps {
+                container ('docker-daemon') {
                 sh 'mvn test'
+                
             }
             post {
+                container ('docker-daemon') {
                 always {
                     junit 'target/surefire-reports/*.xml'
+                }
                 }
             }
         }
         stage('Deliver') {
             steps {
+                container ('docker-daemon') {
                 sh './jenkins/scripts/deliver.sh'
+                }
             }
         }
     }
